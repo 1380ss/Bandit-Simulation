@@ -1,0 +1,33 @@
+name: Lint Python Code  # Workflow name
+
+on:
+  push:
+    branches:
+      - main  # Triggers on push to the main branch
+  pull_request:
+    branches:
+      - main  # Triggers on pull request to the main branch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu environment
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Checks out the repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v4  # Sets up Python
+        with:
+          python-version: '3.x'  # Specifies the Python version
+
+      - name: Install Pylint and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint  # Installs Pylint
+          # If you have a requirements.txt, install it as well:
+          # pip install -r requirements.txt
+
+      - name: Run Pylint
+        run: |
+          pylint your_project/ --rcfile=pylint.yml  # Run Pylint on your project directory
