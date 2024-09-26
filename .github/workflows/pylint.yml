@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4  # Sets up Python
         with:
-          python-version: '3.x'  # Specifies the Python version
+          python-version: ${{ matrix.python-version }}  # Specifies the Python version
 
       - name: Install Pylint and dependencies
         run: |
