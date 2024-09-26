@@ -3,12 +3,18 @@
 
 import numpy as np
 
-class beta_bernoulli:
+class Beta_Bernoulli:
     """
     Beta-Bernoulli model
     """
 
     def __init__(self, number_of_arms, prior=None):
+        """
+        only initialize prior (posterior will be set later, when number of replication
+        is known
+        :param number_of_arms:
+        :param prior:
+        """
         self.number_of_arms = number_of_arms
         if prior is None:
             self.prior = {'a': np.ones(number_of_arms),
@@ -25,7 +31,7 @@ class beta_bernoulli:
         :return:
         """
 
-        return (np.random.beta(**self.posterior, size=(size,) + self.posterior['a'].shape))
+        return np.random.beta(**self.posterior, size=(size,) + self.posterior['a'].shape)
 
     def update_posterior(self, action_hist, reward_hist):
         """
