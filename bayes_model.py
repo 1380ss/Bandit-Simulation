@@ -1,9 +1,12 @@
-#this file contains all Bayes updating models.
-#in the future can check if there's packages available
+"""
+this file contains all Bayes updating models.
+in the future can check if there's packages available
+"""
+
 
 import numpy as np
 
-class Beta_Bernoulli:
+class BetaBernoulli:
     """
     Beta-Bernoulli model
     """
